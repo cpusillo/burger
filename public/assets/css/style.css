@@ -21,8 +21,13 @@ h1 i {
     text-align: center;
 }
 
-.actions {
-    font-weight: bold;
-    color: red;
-    text-transform: uppercase;
+.eat-delete ul {
+    list-style: none;
+    text-align: left;
+}
+.eat-delete li {
+    padding: 10px;
+}
+.eat-delete button {
+    margin-left: 10px;
 }
