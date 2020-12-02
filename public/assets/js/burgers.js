@@ -1,32 +1,65 @@
-$(document).ready (function(){
+$(document).ready(function () {
 
-$(function(){
-    $.ajax("/burgers",{
-    type: "GET",
-    }).then(function(data){
-        let eatBurger = $("#eat-burger");
-        let deleteBurger = $("#delete-burger");
+    $(function () {
+        $.ajax("/burgers", {
+            type: "GET",
+        }).then(function (data) {
+            let burgers = data.burgers;
+            let length = burgers.length;
 
-        let burgers = data.burgers;
-        let length = burgers.length;
+            let ul_elem_eat = $("#eat-burger")
+            let ul_elem_del = $("#delete-burger")
 
-        let ul_elem_eat = $("#eat-burger")
-        let ul_elem_del = $("#delete-burger")
+            for (var i = 0; i < length; i++) {
+                if (burgers[i].devoured === 0) {
+                    ul_elem_eat.append("<li>" +
+                        "<button data-id='" +
+                        burgers[i].id + "' data-devoured='" + burgers[i].devoured + "' class='btn btn-danger eat'>Eat!</button>"
+                        + burgers[i].burger_name + "</li>")
+                }
+                else {
+                    ul_elem_del.append("<li>" +
+                        "<button data-id='" +
+                        burgers[i].id + "' data-devoured='" + burgers[i].devoured + "' class='btn btn-danger delete'>Delete!</button>"
+                        + burgers[i].burger_name + "</li>")
+                }
+            }
+        })
+    });
+    $(document).on("click", ".eat", function (e) {
+        let id = $(this).data("id");
+        let isDevoured = $(this).data("devoured") === 0;
 
-        for (var i = 0; i < length; i++) {
-            if (burgers[i].devoured === 0){
-            ul_elem_eat.append("<li>"+
-            "<button data-burgerid='"+
-            burgers[i].id+"' class='btn btn-danger eat'>Eat!</button>"
-            +burgers[i].burger_name+"</li>")
-        }
-        else {
-            ul_elem_del.append("<li>"+
-            "<button data-burgerid='"+
-            burgers[i].id+"' class='btn btn-danger eat'>Delete!</button>"
-            +burgers[i].burger_name+"</li>")
-        }
-          }
-    })
-})
-});
+        console.log(`Burger id clicked: ${id} and isDevoured: ${isDevoured}`);
+
+        let burgerState = {
+            devoured: isDevoured
+        };
+
+        // PUT request to update burgers.
+        $.ajax("/burgers/" + id, {
+            type: "PUT",
+            data: JSON.stringify(burgerState),
+            dataType: "json",
+            contentType: "application/json"
+        }).then(function () {
+            console.log(`Changed burger state to: ${burgerState}`);
+            location.reload();
+        })
+    });
+
+    $(document).on("click", ".delete", function (event) {
+        var id = $(this).data("id");
+
+        // Send the DELETE request.
+        $.ajax("/burgers/" + id, {
+            type: "DELETE"
+        }).then(function () {
+            console.log("deleted burger", id);
+            // Reload the page to get the updated list
+            location.reload();
+        });
+    });
+
+
+}); //document.ready

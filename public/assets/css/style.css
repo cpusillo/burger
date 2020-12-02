@@ -1,3 +1,5 @@
+/* ---- GLOBAL ---- */
+
 body {
     background-color:#f5923b; 
 }
@@ -14,8 +16,10 @@ h1 i {
     color: #f1c40f;
 }
 
-.burgers-main, .eat-delete {
-    width: 70%;
+/* ---- MAIN SECTION ---- */
+
+.burgers-main {
+    width: 60%;
     margin: 0 auto;
     padding-top: 80px;
     text-align: center;
