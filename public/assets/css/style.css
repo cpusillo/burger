@@ -1,0 +1,28 @@
+body {
+    background-color:#f5923b; 
+}
+
+h1,h2,h3,h4 {
+    font-family: 'Bebas Neue', cursive;
+    color: #fff;
+}
+h1 {
+    font-size: 3.5em;
+}
+
+h1 i {
+    color: #f1c40f;
+}
+
+.burgers-main, .eat-delete {
+    width: 70%;
+    margin: 0 auto;
+    padding-top: 80px;
+    text-align: center;
+}
+
+.actions {
+    font-weight: bold;
+    color: red;
+    text-transform: uppercase;
+}
