@@ -4,7 +4,7 @@ var connection = mysql.createConnection({
   HOST: "us-cdbr-east-02.cleardb.com",
   USER: "bb46dc47d7994e",
   PASSWORD: "8b7f35c5",
-  DB: "heroku_d94fa42ebf84e03"
+  DATABASE: "heroku_d94fa42ebf84e03"
 });
 
 connection.connect(function(err) {
