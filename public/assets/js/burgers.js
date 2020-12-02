@@ -48,6 +48,28 @@ $(document).ready(function () {
         })
     });
 
+    $(".submit").on("click", function(event) {
+        event.preventDefault();
+        var burgerName = $("#burger-input").val().trim();
+        console.log(burgerName);
+        var newBurger = {
+            name: burgerName,
+            devoured: false
+        };
+    
+        // Send the POST request.
+        $.ajax("/burgers", {
+          type: "POST",
+          data: JSON.stringify(newBurger),
+          dataType:'json',
+          contentType: 'application/json'
+        }).then(function() {
+          console.log("created new burger");
+          // Reload the page to get the updated list
+          location.reload();
+        });
+      });
+
     $(document).on("click", ".delete", function (event) {
         var id = $(this).data("id");
 
