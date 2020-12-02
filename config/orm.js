@@ -1,22 +1,55 @@
 var connection = require("./connection.js");
 
 var orm = {
-    /*
-    selectAll()
-    insertOne()
-    updateOne()
-    deleteOne()
+  /*
+  selectAll()
+  insertOne()
+  updateOne()
+  deleteOne()
 */
-// all queries a table for all information.
-all: function(tableInput, cb) {
-  var queryString = "SELECT * FROM " + tableInput + ";";
-  connection.query(queryString, function(err, result) {
-    if (err) {
-      throw err;
-    }
-    cb(result);
-  });
-},
+  // all queries a table for all information.
+  selectAll: function (tableInput, cb) {
+    var queryString = "SELECT * FROM " + tableInput + ";";
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+      cb(result);
+    });
+  },
+  create: function (table, cols, vals, cb) {
+    var queryString = "INSERT INTO " + table;
+
+    queryString += " (";
+    queryString += cols.toString();
+    queryString += ") ";
+    queryString += "VALUES (";
+    queryString += printQuestionMarks(vals.length);
+    queryString += ") ";
+
+    console.log(queryString);
+
+    connection.query(queryString, vals, function (err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+  },
+  delete: function (table, condition, cb) {
+    var queryString = "DELETE FROM " + table;
+    queryString += " WHERE ";
+    queryString += condition;
+
+    connection.query(queryString, function (err, result) {
+      if (err) {
+        throw err;
+      }
+
+      cb(result);
+    });
+  }
 };
 
 module.exports = orm;

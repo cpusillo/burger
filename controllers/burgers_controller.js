@@ -9,7 +9,7 @@ router.get("/", function(req,res){
 });
 
 router.get("/burgers", function(req,res){
-    burger.all(function(data){
+    burger.selectAll(function(data){
         res.json({burgers: data});
     })
 })
