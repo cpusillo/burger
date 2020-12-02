@@ -16,15 +16,15 @@ $(function(){
         for (var i = 0; i < length; i++) {
             if (burgers[i].devoured === 0){
             ul_elem_eat.append("<li>"+
-            burgers[i].burger_name+
             "<button data-burgerid='"+
-            burgers[i].id+"' class='btn btn-danger eat'>Eat!</button></li>")
+            burgers[i].id+"' class='btn btn-danger eat'>Eat!</button>"
+            +burgers[i].burger_name+"</li>")
         }
         else {
             ul_elem_del.append("<li>"+
-            burgers[i].burger_name+
             "<button data-burgerid='"+
-            burgers[i].id+"' class='btn btn-danger eat'>Delete!</button></li>")
+            burgers[i].id+"' class='btn btn-danger eat'>Delete!</button>"
+            +burgers[i].burger_name+"</li>")
         }
           }
     })
