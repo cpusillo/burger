@@ -21,4 +21,5 @@ Use the Eat and Delete buttons to eat or delete a burger.
 * run `node server.js` from project route to start the webserver on port 8080.
 
 ### Here's how the app looks on load:
+![Gif](https://media.giphy.com/media/Be7gGiPkCt9SMeYP6m/giphy.gif)
 ![Image of app](https://github.com/cpusillo/burger/blob/main/public/assets/img/burgers.png)
